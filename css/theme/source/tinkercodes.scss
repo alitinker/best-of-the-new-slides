@@ -1,0 +1,92 @@
+/**
+ * Black theme for reveal.js. This is the opposite of the 'white' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url('https://fonts.googleapis.com/css?family=El+Messiri|Marmelad|Roboto:300,400&display=swap');
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #1d1d1d;
+
+$mainColor: #eaeaea;
+$headingColor: #eaeaea;
+
+$mainFontSize: 34px;
+$mainFont: 'Roboto', sans-serif;
+$headingFont: 'Marmelad', sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: normal;
+$linkColor: rgb(117, 195, 255);
+$linkColorHover: #ac90f9;
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 1.6em;
+$heading2Size: 1.1em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-light-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #222;
+	}
+}
+
+@import url('https://fonts.googleapis.com/css?family=El+Messiri|Marmelad|Roboto:300,400&display=swap');
+
+html, body {
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2 {
+	font-weight: normal;
+}
+
+p, li {
+	font-size: 0.6em;
+}
+
+li {
+	margin: 8px 0;
+}
+
+a, a:link {
+    text-decoration: none;
+}
+
+.left-p {text-align: left;}
+
+.heading-small {
+	color: #ac90f9;
+	text-transform: uppercase;
+	font-size: 0.5em;
+	letter-spacing: 2px;
+}
+
+.heading {
+	//font-size: 60px;
+	margin-bottom: 0;
+	background: -webkit-gradient(linear,left top,right top,from(#26b798),to(#7f1bda));
+    background: linear-gradient(to right,#26b798,#7f1bda);
+    background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------

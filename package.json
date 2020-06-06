@@ -1,7 +1,7 @@
 {
-  "name": "reveal.js",
-  "version": "4.0.2",
-  "description": "The HTML Presentation Framework",
+  "name": "best-of-the-new-slides",
+  "version": "1.0",
+  "description": "Best of the New: presentation slides",
   "homepage": "https://revealjs.com",
   "subdomain": "revealjs",
   "main": "dist/reveal.js",
@@ -13,13 +13,9 @@
     "build": "gulp build"
   },
   "author": {
-    "name": "Hakim El Hattab",
-    "email": "hakim.elhattab@gmail.com",
-    "web": "https://hakim.se"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/hakimel/reveal.js.git"
+    "name": "Alison Tinker",
+    "email": "tinker.alison@gmail.com",
+    "web": "alitinker.github.io"
   },
   "engines": {
     "node": ">=10.0.0"

@@ -4,11 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Best of the New</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+		<link rel="stylesheet" href="dist/theme/tinkercodes.css" id="theme">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
@@ -16,8 +16,168 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1 class="heading">The Best of The New</h1> 
+					<h2>What's good in ES2020, and other newly supported features you may have missed</h2>
+					<p class="heading-small">Presented by <a href="https://www.linkedin.com/in/alison-tinker-04b46355/">Alison Tinker</a></p>
+					<p class="heading-small">Software Developer at <a href="https://www.singlestoneconsulting.com/">SingleStone</a></p>
+				</section>
+				<section>
+					<h1 class="heading">ECMAScript 2020</h1>
+					<p class="heading-small">Release status</p>
+					<ul>
+						<li>Feature set finalized</li>
+						<li>Approved by TC39 committee</li>
+						<li>Expected to be formally approved by the ECMA general assembly in June</li>
+					</ul>
+				</section>
+				<section>
+					<h1 class="heading">ECMAScript 2020</h1>
+					<p class="heading-small">Can I use?</p>
+					<ul>
+						<li>Many features are already implemented in popular browsers
+						</li>
+						<li>Many features are already supported by Babel and TypeScript
+						</li>
+						<li>Check the status of each new feature here: <a href="https://test262.report/features/">https://test262.report/features/</a>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h1 class="heading">ECMAScript 2020</h1>
+					<p class="heading-small">Notable features</p>
+					<ul>
+						<li>Promise.allSettled()</li>
+						<li>Optional chaining</li>
+						<li>BigInt</li>
+						<li>Nullish coalescing operator</li>
+						<li>String.matchAll()</li>
+						<li>Dynamic imports</li>
+					</ul>
+				</section>
+				<section>
+					<h1 class="heading">Promise.allSettled()</h1>
+					<p>
+						Asynchronously fulfills each given promise and 
+						returns a promise. Includes an array of objects that describe the outcome of each promise
+						(whether they were resolved or rejected).
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers="9-14">
+							getData = () => {
+
+								// make some async calls
+
+								const promise1 = getMyData(1)
+								const promise2 = getMyData(2)
+								const promise3 = getMyData(3)
+
+								Promise.allSettled(promises).then(results => {
+
+									let fulfilledResults = results.filter(r => r.status === 'fulfilled'))
+
+									// do something with fulfilled results
+								});
+							};
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h1 class="heading">Optional Chaining</h1>
+					<p>
+						An operator '?.' that allows you to read properties within 
+						nested objects without checking the validity of objects in the chain.
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers="6,8">
+							const bookObject = {
+								title: "A title",
+								description: "A description"
+							  }
+							  
+							const lastName = bookObject.author?.firstName;
+
+							// will be undefined instead of throwing an error
+						</code>
+					</pre>
+					<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.7</p>
+				</section>
+				<section>
+					<h1 class="heading">Nullish Coalescing Operator</h1>
+					<p>
+						A logical operator `??`. The right side 
+						operand is returned when the left side operand is null or undefined. 
+						Otherwise, The left side operand is returned.
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers="1,7">
+							const foo = null ?? 'Some default';
+
+							console.log(foo) // output: "Some default"
+							
+							let someUndefined;
+
+							const bar = someUndefined ?? 100
+
+							console.log(bar) // output: 100
+						</code>
+					</pre>
+					<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.7</p>
+				</section>
+				<section>
+					<h1 class="heading">String.matchAll()</h1>
+					<p>
+						A new method attached to the String object that returns an iterator
+						of all results from matching a string against a regexp. 
+						It will also provide the matches captured for named groups.
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers="5">
+							let dateString = '1910-May-09 09:05, 2020-June-12 11:05';
+
+							let regexpDateFormat =  /(?<year>\d{4})-(?<month>\w+)-(?<day>\d{2}) (?<time>\d{2}:\d{2})/gu;
+								
+							let array = Array.from(dateString.matchAll(regexpDateFormat));
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h1 class="heading">Big Int</h1>
+					<p>
+						A new primitive that can represent arbitrary large numbers
+						greater than 2^53, which is the max safe integer for a Number primitive.
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers="1-2,4,6">
+							// The letter n is appended to distinguish it as a BigInt
+							const someBigInt = 340n;
+							
+							// A Number can be converted to a BigInt
+							const someNumber = 467;
+							const someBigInt = BigInt(someNumber);
+						</code>
+					</pre>
+					<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.2, Node.js</p>
+				</section>
+				<section>
+					<h1 class="heading">Dynamic Imports</h1>
+					<p>
+						Function-like import that allows you to load a module from anywhere
+						in your application code. Supports await. 
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers="1-2,4,6">
+							import('../../config.json')
+							.then(module => {
+							  // do something with module
+							})
+							.catch(err => {
+							  console.log(err.message  );
+							});
+						</code>
+					</pre>
+					<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.2, Node.js 13.2</p>
+				</section>
 			</div>
 		</div>
 
