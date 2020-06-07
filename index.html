@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="dist/theme/tinkercodes.css" id="theme">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		<link rel="stylesheet" type="text/css" href="plugin/highlight/atelier-cave-dark.css" id="highlight-theme">
 	</head>
 	<body>
 		<div class="reveal">
@@ -23,160 +23,227 @@
 					<p class="heading-small">Software Developer at <a href="https://www.singlestoneconsulting.com/">SingleStone</a></p>
 				</section>
 				<section>
-					<h1 class="heading">ECMAScript 2020</h1>
-					<p class="heading-small">Release status</p>
-					<ul>
-						<li>Feature set finalized</li>
-						<li>Approved by TC39 committee</li>
-						<li>Expected to be formally approved by the ECMA general assembly in June</li>
-					</ul>
+					<section>
+						<h1 class="heading">ECMAScript 2020</h1>
+						<p class="heading-small">Release status</p>
+						<ul>
+							<li>Feature set finalized</li>
+							<li>Approved by TC39 committee</li>
+							<li>Expected to be formally approved by the ECMA general assembly in June</li>
+						</ul>
+					</section>
+					<section>
+						<h1 class="heading">ECMAScript 2020</h1>
+						<p class="heading-small">Can I use?</p>
+						<ul>
+							<li>Many features are already implemented in popular browsers
+							</li>
+							<li>Many features are already supported by Babel and TypeScript
+							</li>
+							<li>Check the status of each new feature here: <a href="https://test262.report/features/">https://test262.report/features/</a>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h1 class="heading">ECMAScript 2020</h1>
+						<p class="heading-small">Notable features</p>
+						<ul>
+							<li>Promise.allSettled()</li>
+							<li>Optional chaining</li>
+							<li>BigInt</li>
+							<li>Nullish coalescing operator</li>
+							<li>String.matchAll()</li>
+							<li>Dynamic imports</li>
+						</ul>
+					</section>
 				</section>
 				<section>
-					<h1 class="heading">ECMAScript 2020</h1>
-					<p class="heading-small">Can I use?</p>
-					<ul>
-						<li>Many features are already implemented in popular browsers
-						</li>
-						<li>Many features are already supported by Babel and TypeScript
-						</li>
-						<li>Check the status of each new feature here: <a href="https://test262.report/features/">https://test262.report/features/</a>
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h1 class="heading">ECMAScript 2020</h1>
-					<p class="heading-small">Notable features</p>
-					<ul>
-						<li>Promise.allSettled()</li>
-						<li>Optional chaining</li>
-						<li>BigInt</li>
-						<li>Nullish coalescing operator</li>
-						<li>String.matchAll()</li>
-						<li>Dynamic imports</li>
-					</ul>
-				</section>
-				<section>
-					<h1 class="heading">Promise.allSettled()</h1>
-					<p>
-						Asynchronously fulfills each given promise and 
-						returns a promise. Includes an array of objects that describe the outcome of each promise
-						(whether they were resolved or rejected).
-					</p>
-					<pre>
-						<code data-trim data-noescape data-line-numbers="9-14">
-							getData = () => {
-
-								// make some async calls
-
-								const promise1 = getMyData(1)
-								const promise2 = getMyData(2)
-								const promise3 = getMyData(3)
-
-								Promise.allSettled(promises).then(results => {
-
-									let fulfilledResults = results.filter(r => r.status === 'fulfilled'))
-
-									// do something with fulfilled results
-								});
-							};
-						</code>
-					</pre>
-				</section>
-				<section>
-					<h1 class="heading">Optional Chaining</h1>
-					<p>
-						An operator '?.' that allows you to read properties within 
-						nested objects without checking the validity of objects in the chain.
-					</p>
-					<pre>
-						<code data-trim data-noescape data-line-numbers="6,8">
-							const bookObject = {
-								title: "A title",
-								description: "A description"
-							  }
-							  
-							const lastName = bookObject.author?.firstName;
-
-							// will be undefined instead of throwing an error
-						</code>
-					</pre>
-					<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.7</p>
-				</section>
-				<section>
-					<h1 class="heading">Nullish Coalescing Operator</h1>
-					<p>
-						A logical operator `??`. The right side 
-						operand is returned when the left side operand is null or undefined. 
-						Otherwise, The left side operand is returned.
-					</p>
-					<pre>
-						<code data-trim data-noescape data-line-numbers="1,7">
-							const foo = null ?? 'Some default';
-
-							console.log(foo) // output: "Some default"
+					<section>
+						<h1 class="heading">Promise.allSettled()</h1>
+						<p>
+							Asynchronously fulfills each given promise and 
+							returns a promise. Includes an array of objects that describe the outcome of each promise
+							(whether they were resolved or rejected).
+						</p>
+					</section>
+					<section>
+						<h3 class="heading">Promise.allSettled()</h3>
+						<pre>
+							<code data-trim data-noescape data-line-numbers="8-10">
+								getProjects = () => {
+									const promise1 = getProjectById(94236)
+									const promise2 = getProjectById(95084)
+									const promise3 = getProjectById(10603)
+									const promise4 = getProjectById(90000000000)
+									const promises = [promise1, promise2, promise3, promise4]
 							
-							let someUndefined;
-
-							const bar = someUndefined ?? 100
-
-							console.log(bar) // output: 100
-						</code>
-					</pre>
-					<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.7</p>
+									Promise.allSettled(promises).then(results => {
+										console.log(results.filter(r => r.status === 'fulfilled'))
+									});
+								};
+							</code>
+						</pre>
+					</section>
 				</section>
 				<section>
-					<h1 class="heading">String.matchAll()</h1>
-					<p>
-						A new method attached to the String object that returns an iterator
-						of all results from matching a string against a regexp. 
-						It will also provide the matches captured for named groups.
-					</p>
-					<pre>
-						<code data-trim data-noescape data-line-numbers="5">
-							let dateString = '1910-May-09 09:05, 2020-June-12 11:05';
-
-							let regexpDateFormat =  /(?<year>\d{4})-(?<month>\w+)-(?<day>\d{2}) (?<time>\d{2}:\d{2})/gu;
+					<section>
+						<h1 class="heading">Optional Chaining</h1>
+						<p>
+							An operator '?.' that allows you to read properties within 
+							nested objects (objects proper, arrays, functions) without checking the validity of objects in the chain.
+						</p>
+						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.7</p>
+					</section>
+					<section>
+						<h3 class="heading">Optional Chaining</h3>
+						<pre>
+							<code data-trim data-noescape data-line-numbers="6,8">
+								const bookObject = {
+									title: "A title",
+									description: "A description"
+								}
 								
-							let array = Array.from(dateString.matchAll(regexpDateFormat));
-						</code>
-					</pre>
+								const lastName = bookObject.author?.firstName;
+
+								// will be undefined instead of throwing an error
+							</code>
+						</pre>
+					</section>
 				</section>
 				<section>
-					<h1 class="heading">Big Int</h1>
-					<p>
-						A new primitive that can represent arbitrary large numbers
-						greater than 2^53, which is the max safe integer for a Number primitive.
-					</p>
-					<pre>
-						<code data-trim data-noescape data-line-numbers="1-2,4,6">
-							// The letter n is appended to distinguish it as a BigInt
-							const someBigInt = 340n;
-							
-							// A Number can be converted to a BigInt
-							const someNumber = 467;
-							const someBigInt = BigInt(someNumber);
-						</code>
-					</pre>
-					<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.2, Node.js</p>
+					<section>
+						<h1 class="heading">Nullish Coalescing Operator</h1>
+						<p>
+							A logical operator `??`. The right side 
+							operand is returned when the left side operand is null or undefined. 
+							Otherwise, The left side operand is returned.
+						</p>
+						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.7</p>
+					</section>
+					<section>
+						<h3 class="heading">Nullish Coalescing Operator</h3>
+						<pre>
+							<code data-trim data-noescape data-line-numbers="1,7">
+								const foo = null ?? 'Some default';
+
+								console.log(foo) // output: "Some default"
+								
+								let someUndefined;
+
+								const bar = someUndefined ?? 100
+
+								console.log(bar) // output: 100
+							</code>
+						</pre>
+					</section>
 				</section>
 				<section>
-					<h1 class="heading">Dynamic Imports</h1>
-					<p>
-						Function-like import that allows you to load a module from anywhere
-						in your application code. Supports await. 
-					</p>
-					<pre>
-						<code data-trim data-noescape data-line-numbers="1-2,4,6">
-							import('../../config.json')
-							.then(module => {
-							  // do something with module
-							})
-							.catch(err => {
-							  console.log(err.message  );
-							});
-						</code>
-					</pre>
-					<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.2, Node.js 13.2</p>
+					<section>
+						<h1 class="heading">String.matchAll()</h1>
+						<p>
+							A new method attached to the String object that returns an iterator
+							of all results from matching a string against a regexp. 
+							It will also provide the matches captured for named groups.
+						</p>
+					</section>
+					<section>
+						<h3 class="heading">String.matchAll()</h3>
+						<pre>
+							<code data-trim data-noescape data-line-numbers="5">
+								let dateString = '1910-May-09 09:05, 2020-June-12 11:05';
+	
+								let regexpDateFormat =  /(?<year>\d{4})-(?<month>\w+)-(?<day>\d{2}) (?<time>\d{2}:\d{2})/gu;
+									
+								let array = Array.from(dateString.matchAll(regexpDateFormat));
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1 class="heading">Big Int</h1>
+						<p>
+							A new primitive that can represent arbitrary large numbers
+							greater than 2^53, which is the max safe integer for a Number primitive.
+						</p>
+						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.2, Node.js</p>
+					</section>
+					<section>
+						<h3 class="heading">Big Int</h3>
+						<pre>
+							<code data-trim data-noescape data-line-numbers="1-2,4,6">
+								// The letter n is appended to distinguish it as a BigInt
+								const someBigInt = 340n;
+								
+								// A Number can be converted to a BigInt
+								const someNumber = 467;
+								const someBigInt = BigInt(someNumber);
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1 class="heading">Dynamic Imports</h1>
+						<p>
+							Function-like import that allows you to load a module from anywhere
+							in your application code. Supports await. 
+						</p>
+						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.2, Node.js 13.2</p>
+					</section>
+					<section>
+						<h3 class="heading">Dynamic Imports</h3>
+						<pre>
+							<code data-trim data-noescape data-line-numbers="1-2,4,6">
+								import('../../config.json')
+								.then(module => {
+								  // do something with module
+								})
+								.catch(err => {
+								  console.log(err.message  );
+								});
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1 class="heading">What else is there?</h1>
+						<p class="heading-small">Other new JS features</p>
+						<ul>
+							<li>ES2020: <a href="https://github.com/tc39/proposal-import-meta">import.meta</a></li>
+							<li>ES2020: <a href="https://github.com/tc39/proposal-global">globalThis</a></li>
+							<li>ES2021: <a href="https://github.com/tc39/proposal-string-replaceall">String.replaceAll()</a></li>
+						</ul>
+					</section>
+					<section>
+						<h1 class="heading">What else is there?</h1>
+						<p class="heading-small">Experimental Web APIs</p>
+						<ul>
+							<li>Some support: <a href="https://www.w3.org/TR/2020/WD-gamepad-20200225/">GamePad</a></li>
+							<li>Mostly supported: <a href="https://www.w3.org/TR/2020/WD-push-api-20200204/">Push API</a></li>
+							<li>Mostly supported: <a href="https://wicg.github.io/netinfo/">Network Information API</a></li>
+							<li>Firefox only: <a href="https://w3c.github.io/proximity/">Proximity Sensor</a></li>
+							<li>Some support: <a href="https://w3c.github.io/longtasks/">Long Tasks API</a></li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<h1 class="heading">Shape the Future</h1>
+					<p class="heading-small">They want your input</p>
+					<ul>
+						<li>
+							Submit issues or PRs to <a href="https://github.com/tc39/ecma262/blob/master/CONTRIBUTING.md">ECMAScript latest</a>, 
+							or submit a proposal.
+						</li>
+						<li>Join the <a href="https://developers.chrome.com/origintrials/#/trials/active">Google Origin Trials</a></li>
+						<li>Contribute to <a href="https://www.w3.org/participate/">W3C discussion lists, events, blogs, and translations</a></li>
+						<li>Participate in <a href="https://support.mozilla.org/en-US/kb/shield">FireFox Studies</a></li>
+					</ul>
+				</section>
+				<section>
+					<h1 class="heading">Thanks for watching!</h1>
+					<p><a href="https://github.com/alitinker/best-of-the-new-slides">github.com/alitinker/best-of-the-new-slides</a></p>
 				</section>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 /**
- * Black theme for reveal.js. This is the opposite of the 'white' theme.
+ * Tinker Codes theme.
  *
- * By Hakim El Hattab, http://hakim.se
+ * By Alison Tinker, http://alitinker.github.io
  */
 @import url("https://fonts.googleapis.com/css?family=El+Messiri|Marmelad|Roboto:300,400&display=swap");
 @import url("https://fonts.googleapis.com/css?family=El+Messiri|Marmelad|Roboto:300,400&display=swap");
@@ -17,7 +17,9 @@ h1, h2 {
   font-weight: normal; }
 
 p, li {
-  font-size: 0.6em; }
+  font-size: 0.6em;
+  font-weight: 300;
+  line-height: 30px !important; }
 
 li {
   margin: 8px 0; }
