@@ -65,22 +65,41 @@
 							returns a promise. Includes an array of objects that describe the outcome of each promise
 							(whether they were resolved or rejected).
 						</p>
+						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.7, Node.js ^12.9</p>
 					</section>
 					<section>
 						<h3 class="heading">Promise.allSettled()</h3>
 						<pre>
-							<code data-trim data-noescape data-line-numbers="8-10">
+							<code data-trim data-noescape >
 								getProjects = () => {
 									const promise1 = getProjectById(94236)
 									const promise2 = getProjectById(95084)
 									const promise3 = getProjectById(10603)
-									const promise4 = getProjectById(90000000000)
+									const promise4 = getProjectById(90000000000) // invalid ID
+
 									const promises = [promise1, promise2, promise3, promise4]
 							
 									Promise.allSettled(promises).then(results => {
-										console.log(results.filter(r => r.status === 'fulfilled'))
+										let fulfilledResults = 
+											results.filter(r => r.status === 'fulfilled');
+
+										console.log(results)
 									});
 								};
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3 class="heading">Promise.allSettled()</h3>
+						<p class="heading-small">Output</p>
+						<pre>
+							<code data-trim data-noescape>
+							[
+								0: {status: "fulfilled", value: {…}}
+								1: {status: "fulfilled", value: {…}}
+								2: {status: "fulfilled", value: {…}}
+								3: {status: "rejected", reason: Error: Not Found...
+							]
 							</code>
 						</pre>
 					</section>
@@ -89,15 +108,15 @@
 					<section>
 						<h1 class="heading">Optional Chaining</h1>
 						<p>
-							An operator '?.' that allows you to read properties within 
+							An operator <code>?.</code> that allows you to read properties within 
 							nested objects (objects proper, arrays, functions) without checking the validity of objects in the chain.
 						</p>
-						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.7</p>
+						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.7, Node.js 14</p>
 					</section>
 					<section>
 						<h3 class="heading">Optional Chaining</h3>
 						<pre>
-							<code data-trim data-noescape data-line-numbers="6,8">
+							<code data-trim data-noescape>
 								const bookObject = {
 									title: "A title",
 									description: "A description"
@@ -114,25 +133,26 @@
 					<section>
 						<h1 class="heading">Nullish Coalescing Operator</h1>
 						<p>
-							A logical operator `??`. The right side 
-							operand is returned when the left side operand is null or undefined. 
+							A logical operator denoted by <code>??</code>. The right side 
+							operand is returned when the <br/>left side operand is null or undefined. 
 							Otherwise, The left side operand is returned.
 						</p>
-						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.7</p>
+						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.7, Node.js 14</p>
 					</section>
 					<section>
 						<h3 class="heading">Nullish Coalescing Operator</h3>
 						<pre>
-							<code data-trim data-noescape data-line-numbers="1,7">
+							<code data-trim data-noescape>
 								const foo = null ?? 'Some default';
 
-								console.log(foo) // output: "Some default"
+								console.log(foo); // output: "Some default"
 								
 								let someUndefined;
 
-								const bar = someUndefined ?? 100
+								const bar = someUndefined ?? 100;
+								// when left side is nullish, returns right side operand
 
-								console.log(bar) // output: 100
+								console.log(bar); // output: 100
 							</code>
 						</pre>
 					</section>
@@ -145,16 +165,39 @@
 							of all results from matching a string against a regexp. 
 							It will also provide the matches captured for named groups.
 						</p>
+						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.7, Node.js 12</p>
 					</section>
 					<section>
 						<h3 class="heading">String.matchAll()</h3>
 						<pre>
-							<code data-trim data-noescape data-line-numbers="5">
-								let dateString = '1910-May-09 09:05, 2020-June-12 11:05';
-	
-								let regexpDateFormat =  /(?<year>\d{4})-(?<month>\w+)-(?<day>\d{2}) (?<time>\d{2}:\d{2})/gu;
-									
-								let array = Array.from(dateString.matchAll(regexpDateFormat));
+							<code data-trim data-noescape>
+							let dateString = '1910-May-09 09:05, 2020-June-12 11:05';
+
+							let regexpDateFormat = 
+								/(?&lt;year>\d{4})-(?&lt;month>\w+)-(?&lt;day>\d{2}) (?&lt;time>\d{2}:\d{2})/gu;
+					
+							let array = Array.from(dateString.matchAll(regexpDateFormat));
+
+							console.log(array[0]);
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3 class="heading">String.matchAll()</h3>
+						<p class="heading-small">Output</p>
+						<pre>
+							<code data-trim data-noescape>
+								[
+									0: "1910-May-09 09:05",
+									1: "1910",
+									2: "May",
+									3: "09",
+									4: "09:05",
+									groups: {year: "1910", month: "May", day: "09", time: "09:05"},
+									index: 0,
+									input: "1910-May-09 09:05, 2020-June-12 11:05",
+									length: 5
+								]
 							</code>
 						</pre>
 					</section>
@@ -164,14 +207,15 @@
 						<h1 class="heading">Big Int</h1>
 						<p>
 							A new primitive that can represent arbitrary large numbers
-							greater than 2^53, which is the max safe integer for a Number primitive.
+							greater than 2^53, <br/>which is the max safe integer for a Number primitive. 
 						</p>
-						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.2, Node.js</p>
+						<p class="heading-small">Babel ^7.0*, Edge, Chrome, Firefox, TypeScript ^3.2, Node.js</p>
+						<p class="notes">*Babel does not support BigInt exponentiation</p>
 					</section>
 					<section>
 						<h3 class="heading">Big Int</h3>
 						<pre>
-							<code data-trim data-noescape data-line-numbers="1-2,4,6">
+							<code data-trim data-noescape>
 								// The letter n is appended to distinguish it as a BigInt
 								const someBigInt = 340n;
 								
@@ -181,22 +225,39 @@
 							</code>
 						</pre>
 					</section>
+					<section>
+						<h3 class="heading">Big Int</h3>
+						<pre>
+							<code data-trim data-noescape>
+							// The exoplanet kepler-150 is a distance of 914 parsecs
+							let distanceInParsecs = 914n;
+							
+							// 1 parsec = aprox 31 trillion km (31000000000000)
+							let parsecToKm = 10n ** 12n * 31n; 
+							
+							let distanceInKm = distanceInParsecs * parsecToKm;
+
+							console.log(distanceInKm);
+
+							// Output: 28334000000000000n
+							</code>
+						</pre>
+					</section>
 				</section>
 				<section>
 					<section>
 						<h1 class="heading">Dynamic Imports</h1>
 						<p>
 							Function-like import that allows you to load a module from anywhere
-							in your application code. Supports await. 
+							in your application code. <br/>Also supports await. 
 						</p>
 						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.2, Node.js 13.2</p>
 					</section>
 					<section>
 						<h3 class="heading">Dynamic Imports</h3>
 						<pre>
-							<code data-trim data-noescape data-line-numbers="1-2,4,6">
-								import('../../config.json')
-								.then(module => {
+							<code data-trim data-noescape>
+								import('../../config.json').then(module => {
 								  // do something with module
 								})
 								.catch(err => {
@@ -243,7 +304,7 @@
 				</section>
 				<section>
 					<h1 class="heading">Thanks for watching!</h1>
-					<p><a href="https://github.com/alitinker/best-of-the-new-slides">github.com/alitinker/best-of-the-new-slides</a></p>
+					<p><a href="https://alitinker.github.io/best-of-the-new-slides/#/">alitinker.github.io/best-of-the-new-slides</a></p>
 				</section>
 			</div>
 		</div>

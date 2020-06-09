@@ -21,7 +21,7 @@ $backgroundColor: #1d1d1d;
 $mainColor: #eaeaea;
 $headingColor: #eaeaea;
 
-$mainFontSize: 34px;
+$mainFontSize: 36px;
 $mainFont: 'Roboto', sans-serif;
 $headingFont: 'Marmelad', sans-serif;
 $headingTextShadow: none;
@@ -74,6 +74,11 @@ a, a:link {
 .heading-small {
 	color: #ac90f9;
 	text-transform: uppercase;
+	font-size: 0.5em;
+	letter-spacing: 2px;
+}
+.notes {
+	color: #ac90f9;
 	font-size: 0.5em;
 	letter-spacing: 2px;
 }
