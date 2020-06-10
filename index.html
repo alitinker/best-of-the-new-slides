@@ -106,6 +106,29 @@
 				</section>
 				<section>
 					<section>
+						<h1 class="heading">Dynamic Imports</h1>
+						<p>
+							Function-like import that allows you to load a module from anywhere
+							in your application code. <br/>Also supports await. 
+						</p>
+						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.2, Node.js 13.2</p>
+					</section>
+					<section>
+						<h3 class="heading">Dynamic Imports</h3>
+						<pre>
+							<code data-trim data-noescape>
+								import('../../config.json').then(module => {
+								  // do something with module
+								})
+								.catch(err => {
+								  console.log(err.message  );
+								});
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
 						<h1 class="heading">Optional Chaining</h1>
 						<p>
 							An operator <code>?.</code> that allows you to read properties within 
@@ -246,29 +269,6 @@
 				</section>
 				<section>
 					<section>
-						<h1 class="heading">Dynamic Imports</h1>
-						<p>
-							Function-like import that allows you to load a module from anywhere
-							in your application code. <br/>Also supports await. 
-						</p>
-						<p class="heading-small">Babel ^7.0, Edge, Chrome, Firefox, TypeScript ^3.2, Node.js 13.2</p>
-					</section>
-					<section>
-						<h3 class="heading">Dynamic Imports</h3>
-						<pre>
-							<code data-trim data-noescape>
-								import('../../config.json').then(module => {
-								  // do something with module
-								})
-								.catch(err => {
-								  console.log(err.message  );
-								});
-							</code>
-						</pre>
-					</section>
-				</section>
-				<section>
-					<section>
 						<h1 class="heading">What else is there?</h1>
 						<p class="heading-small">Other new JS features</p>
 						<ul>
@@ -304,6 +304,7 @@
 				</section>
 				<section>
 					<h1 class="heading">Thanks for watching!</h1>
+					<p class="heading-small">That's all folks</p>
 					<p><a href="https://alitinker.github.io/best-of-the-new-slides/#/">alitinker.github.io/best-of-the-new-slides</a></p>
 				</section>
 			</div>
